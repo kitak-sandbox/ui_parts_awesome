@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .viewport {
+      width: 320px;
+      overflow: hidden;
+      margin: 0 auto;
+      padding: 30px 0;
+      will-change: translate;
+    }
+    #slider {
+      width: 1600px;
+    }
+    .item {
+      width: 310px;
+      text-align: center;
+      font-size: 50px;
+      padding: 50px 0;
+      background: #efefef;
+      border: 5px solid #999;
+      float: left;
+      color: #666;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var left = document.getElementById('left');
+      var right = document.getElementById('right');
+      var slider = document.getElementById('slider');
+
+      var pos = 1;
+
+      slider.addEventListener('webkitTransitionEnd', function() {
+        if (pos <= 0) {
+          pos = 3;
+          slider.style.transitionDuration = '0ms';
+          slider.style.transform = 'translate3d('+(-320*pos)+'px, 0px, 0px)';
+        } else if (pos >= 4) {
+          pos = 1;
+          slider.style.transitionDuration = '0ms';
+          slider.style.transform = 'translate3d('+(-320*pos)+'px, 0px, 0px)';
+        }
+      });
+
+      left.addEventListener('click', function() {
+        pos -= 1;
+        slider.style.transitionDuration = '350ms';
+        slider.style.transform = 'translate3d('+(-320*pos)+'px, 0px, 0px)';
+      });
+
+      right.addEventListener('click', function() {
+        pos += 1;
+        slider.style.transitionDuration = '350ms';
+        slider.style.transform = 'translate3d('+(-320*pos)+'px, 0px, 0px)';
+      });
+    });
+  </script>
+</head>
+<body>
+  <button id="left">左</button>
+  <button id="right">右</button>
+  <div class="viewport">
+    <div id="slider" style="transition-property: transform; transition-timing-function: cubic-bezier(0, 0, 0.25, 1); transition-duration: 350ms; transform: translate3d(-320px, 0px, 0px);">
+      <div id="dummyEnd" class="item">3</div>
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div id="dummyStart" class="item">1</div>
+    </div>
+  </div>
+</body>
+</html>
