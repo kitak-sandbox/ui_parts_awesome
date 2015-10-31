@@ -46,12 +46,14 @@
       });
 
       left.addEventListener('click', function() {
+        if (pos <= 0) { return; }
         pos -= 1;
         slider.style.transitionDuration = '350ms';
         slider.style.transform = 'translate3d('+(-320*pos)+'px, 0px, 0px)';
       });
 
       right.addEventListener('click', function() {
+        if (pos >= 4) { return; }
         pos += 1;
         slider.style.transitionDuration = '350ms';
         slider.style.transform = 'translate3d('+(-320*pos)+'px, 0px, 0px)';
