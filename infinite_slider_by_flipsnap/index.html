@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .viewport {
+      width: 320px;
+      overflow: hidden;
+      margin: 0 auto;
+      padding: 30px 0;
+      will-change: translate;
+    }
+    #slider {
+      width: 960px;
+    }
+    .item {
+      width: 310px;
+      text-align: center;
+      font-size: 50px;
+      padding: 50px 0;
+      background: #efefef;
+      border: 5px solid #999;
+      float: left;
+      color: #666;
+    }
+  </style>
+  <script src="./node_modules/flipsnap/flipsnap.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var left = document.getElementById('left');
+      var right = document.getElementById('right');
+      var flipsnap = Flipsnap('#slider');
+
+      left.addEventListener('click', function() {
+        if (flipsnap.hasPrev()) {
+          flipsnap.toPrev();
+        } else {
+          flipsnap.moveToPoint(2);
+        }
+      });
+      right.addEventListener('click', function() {
+       if (flipsnap.hasNext()) {
+          flipsnap.toNext();
+        } else {
+          flipsnap.moveToPoint(0);
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <button id="left">左</button>
+  <button id="right">右</button>
+  <div class="viewport">
+    <div id="slider">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+  </div>
+</body>
+</html>
